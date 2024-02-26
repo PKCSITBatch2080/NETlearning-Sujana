@@ -5,7 +5,7 @@ class Program
     static void Main()
     {
         // Assuming you have a variable named fullName
-        string fullName = "Sumina Shrestha";
+        string fullName = " sujana magar";
 
         // Create another variable cFullName and initialize it with fullName in uppercase
         string cFullName = fullName.ToUpper();
