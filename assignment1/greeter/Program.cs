@@ -1,31 +1,33 @@
 ﻿using System;
 
-Console.WriteLine("Enter your Name");
-string fullName = Console.ReadLine().ToUpper();
+class Program
+{
+    static void Main()
+    {
 
-Console.WriteLine("Enter your Date of Birth as 2003/11/09");
-DateTime DOB = DateTime.Parse(Console.ReadLine());
+        Console.Write("Enter your name: ");
+        string name = Console.ReadLine();
 
-DateTime today = DateTime.Today;
+        Console.Write("Enter your date of birth (yyyy-MM-dd): ");
+        DateTime dob = DateTime.Parse(Console.ReadLine());
+        DateTime currentDate = DateTime.Now;
+        TimeSpan ageTimeSpan = currentDate - dob;
+        int years = currentDate.Year - dob.Year;
+        int months = currentDate.Month - dob.Month;
+        int days = currentDate.Day - dob.Day;
+        if (days < 0)
+        {
+            months--;
+            days += DateTime.DaysInMonth(currentDate.Year, currentDate.Month - 1);
+        }
 
-TimeSpan age = today - DOB;
-int totalDays = Convert.ToInt32(age.TotalDays);
-int totalHours = Convert.ToInt32(age.TotalHours);
-int totalMinutes = Convert.ToInt32(age.TotalMinutes);
-
-int years = totalDays / 365;
-int months = (totalDays % 365) / 30;
-int weeks = (totalDays % 365 % 30) / 7;
-int days = totalDays % 365 % 30 % 7;
-
-Console.WriteLine($"Hello, {fullName} Ji");
-
-Console.WriteLine($"Your DOB is {DOB.ToString("dddd, dd MMMM yyyy")}.");
-
-Console.WriteLine($"You are {years} years {months} months {weeks} weeks and {days} days old. \n");
-
-// EXTRA
-
-Console.WriteLine($"You are {totalDays} days old");
-Console.WriteLine($"You are {totalHours} hours old");
-Console.WriteLine($"You are {totalMinutes} minutes old");
+        if (months < 0)
+        {
+            years--;
+            months += 12;
+        }
+        Console.WriteLine($"Hello, {name}!");
+        Console.WriteLine($"Your DOB: {dob.ToShortDateString()}");
+        Console.WriteLine($"Age as of now: {years} Years {months} Months {ageTimeSpan.Days} Days");
+    }
+}
